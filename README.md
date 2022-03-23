@@ -1,1 +1,1 @@
-# go-lib
+# github.com/lwabish/snippets

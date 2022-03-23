@@ -12,7 +12,7 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-// NewTreeByLevel 由特定形式的字符串生成一颗二叉树
+// NewTree 由特定形式的字符串生成一颗二叉树
 // 空格作为分隔符，n代表跳过该位置的子树，对于不存在的子树，不需要继续写其子树
 func NewTree(valueString string) (root *TreeNode) {
 	values := strings.Split(valueString, " ")

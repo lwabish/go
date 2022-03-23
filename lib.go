@@ -1,1 +1,1 @@
-package lib
+package snippets
