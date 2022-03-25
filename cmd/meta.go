@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"github.com/lwabish/go-snippets/pkg/image"
 
 	"github.com/spf13/cobra"
@@ -18,10 +17,11 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("meta called")
-		image.ScanImageLabels()
+		image.ScanImageLabels(imageFilters)
 	},
 }
+
+var imageFilters []string
 
 func init() {
 	imageCmd.AddCommand(metaCmd)
@@ -34,5 +34,9 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// metaCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	metaCmd.Flags().StringSliceVarP(&imageFilters, "filters", "f", nil, "[labelKey,labelValue,tagKeyword]")
+	err := metaCmd.MarkFlagRequired("filters")
+	if err != nil {
+		return
+	}
 }
