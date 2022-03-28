@@ -1,4 +1,4 @@
-# github.com/lwabish/snippets
+# github.com/lwabish/go-snippets
 
 ## 命令行入口创建
 ```bash
@@ -10,4 +10,6 @@ cobra-cli init
 cobra-cli add image
 # 增加sub command
 cobra-cli add meta -p 'imageCmd'
+# 为command增加flag
+# 参考meta command
 ```
