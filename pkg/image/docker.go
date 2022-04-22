@@ -42,7 +42,7 @@ func ScanImageLabels(f []string) {
 	for _, v := range list {
 		//fmt.Println(v)
 		// 按tag过滤镜像
-		if !strings.Contains(v.RepoTags[0], tagFilter) {
+		if !matchTags(v.RepoTags, tagFilter) {
 			continue
 		}
 		line := v.Labels["title"] + "\t" + v.Labels["source"] + "\t" + v.Labels["revision"] + "\n"
@@ -50,6 +50,17 @@ func ScanImageLabels(f []string) {
 		svcRevision += line
 	}
 	saveToFile(svcRevision, "release.txt")
+}
+
+func matchTags(tags []string, s string) (r bool) {
+	r = false
+	for _, t := range tags {
+		if strings.Contains(t, s) {
+			r = true
+			return
+		}
+	}
+	return
 }
 
 func saveToFile(d string, n string) {
