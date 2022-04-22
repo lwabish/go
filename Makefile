@@ -1,3 +1,6 @@
+
+default: build-linux install-mac
+
 build-linux:
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/go-snippets-linux-amd64
 
