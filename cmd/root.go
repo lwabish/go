@@ -6,10 +6,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var version = "v1.0.2"
+
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "go-snippets",
-	Short: "command line tools written by go",
+	Use:     "go-snippets",
+	Version: version,
+	Short:   "command line tools written by go",
 	Long: `author: lwabish 
 contact: imwubowen@gmail.com`,
 	// Uncomment the following line if your bare application
