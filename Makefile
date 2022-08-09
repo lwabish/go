@@ -1,11 +1,14 @@
 
-default: build-linux install-mac
+default: install-mac
 
 build-linux:
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/go-snippets-linux-amd64
+	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/lwabish-linux-amd64
 
 build-mac:
-	go build -o bin/go-snippets-darwin-amd64
+	@CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o bin/lwabish-darwin-amd64
 
-install-mac:
-	go install github.com/lwabish/go-snippets@latest
+install-mac: build-mac
+	@mv -f bin/lwabish-darwin-amd64 ${GOPATH}/bin/lwabish
+
+install-linux: build-linux
+	@mv -f bin/lwabish-linux-amd64 ${GOPATH}/bin/lwabish
