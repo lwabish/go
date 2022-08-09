@@ -17,7 +17,8 @@ lwabish -h
 go install github.com/lwabish/go-snippets@latest
 ```
 
-## cobra命令行入口创建
+## dev
+### cobra命令创建
 ```bash
 # 增加command
 cobra-cli add image
@@ -29,7 +30,7 @@ cobra-cli add meta -p 'imageCmd'
 # 参考各个command的init函数
 ```
 
-## 项目初始化
+### 项目初始化
 ```bash
 go install github.com/spf13/cobra-cli@latest
 
