@@ -2,8 +2,10 @@ package cmd
 
 import (
 	"fmt"
-
+	"github.com/lwabish/go-snippets/pkg/k8s"
 	"github.com/spf13/cobra"
+	"k8s.io/client-go/util/homedir"
+	"path/filepath"
 )
 
 // k8sCmd represents the k8s command
@@ -28,9 +30,16 @@ func init() {
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// k8sCmd.PersistentFlags().String("foo", "", "A help for foo")
+	if home := homedir.HomeDir(); home != "" {
+		k8s.KubeConfig = k8sCmd.PersistentFlags().String("kubeconfig", filepath.Join(home, ".kube", "config"),
+			"(optional) absolute path to the kubeConfig file")
+	} else {
+		k8s.KubeConfig = k8sCmd.PersistentFlags().String("kubeconfig", "",
+			"absolute path to the kubeConfig file")
+	}
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// k8sCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	k8s.InitClient()
 }
