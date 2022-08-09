@@ -1,6 +1,4 @@
-# github.com/lwabish/go-snippets
-
-[TOC]
+# Command Line Tool Collection: lwabish
 
 ## Usage
 ```bash
