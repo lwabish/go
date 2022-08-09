@@ -17,9 +17,12 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		k8s.CleanNodeLabels("")
+		k8s.CleanNodeLabels(labelFilters, erase)
 	},
 }
+
+var labelFilters []string
+var erase bool
 
 func init() {
 	k8sCmd.AddCommand(nlcCmd)
@@ -33,4 +36,10 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// nlcCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	nlcCmd.Flags().StringSliceVarP(&labelFilters, "filters", "f", nil, "[keyword1,keyword2...]")
+	err := nlcCmd.MarkFlagRequired("filters")
+	nlcCmd.Flags().BoolVarP(&erase, "erase", "e", false, "erase matched label from nodes")
+	if err != nil {
+		return
+	}
 }
