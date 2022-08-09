@@ -1,19 +1,41 @@
 # github.com/lwabish/go-snippets
 
-## 命令行入口创建
-项目初始化
+[TOC]
+
+## Usage
 ```bash
-go install github.com/spf13/cobra-cli@latest
-go mod init github.com/lwabish/snippets
-cobra-cli init
+# image
+lwabish image -h
+
+# k8s
+lwabish k8s -h
+
+# all commands
+lwabish -h
 ```
 
-cobra
+## install
+```bash
+go install github.com/lwabish/go-snippets@latest
+```
+
+## cobra命令行入口创建
 ```bash
 # 增加command
 cobra-cli add image
+
 # 增加sub command
 cobra-cli add meta -p 'imageCmd'
+
 # 为command增加flag
-# 参考meta command
+# 参考各个command的init函数
+```
+
+## 项目初始化
+```bash
+go install github.com/spf13/cobra-cli@latest
+
+go mod init github.com/lwabish/snippets
+
+cobra-cli init
 ```
