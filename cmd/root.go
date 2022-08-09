@@ -9,7 +9,7 @@ var version = "v1.0.3"
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:     "go-snippets",
+	Use:     "lwabish",
 	Version: version,
 	Short:   "command line tools written by go",
 	Long: `author: lwabish 
