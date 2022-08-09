@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"github.com/lwabish/go-snippets/pkg/k8s"
 	"github.com/spf13/cobra"
 	"k8s.io/client-go/util/homedir"
@@ -11,15 +10,10 @@ import (
 // k8sCmd represents the k8s command
 var k8sCmd = &cobra.Command{
 	Use:   "k8s",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "tools to manipulate kubernetes objects",
+	Long: `author: lwabish 
+contact: imwubowen@gmail.com`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("k8s called")
 	},
 }
 
