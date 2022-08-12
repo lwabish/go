@@ -1,23 +1,17 @@
 package exp
 
 import (
-	"fmt"
-
+	"github.com/lwabish/go-snippets/pkg/exp"
 	"github.com/spf13/cobra"
 )
 
 // hugepageCmd represents the hugepage command
 var hugepageCmd = &cobra.Command{
 	Use:   "hugepage",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "go demo to use linux hugepage",
+	Long:  `inspired by kernel demo of hugepage`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("hugepage called")
+		exp.Run()
 	},
 }
 

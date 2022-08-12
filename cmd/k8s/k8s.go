@@ -13,8 +13,6 @@ var Cmd = &cobra.Command{
 	Short: "tools to manipulate kubernetes objects",
 	Long: `author: lwabish 
 contact: imwubowen@gmail.com`,
-	Run: func(cmd *cobra.Command, args []string) {
-	},
 }
 
 func init() {
