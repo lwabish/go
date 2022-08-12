@@ -1,16 +1,12 @@
-/*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-*/
 package exp
 
 import (
 	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
-// expCmd represents the exp command
-var ExpCmd = &cobra.Command{
+// Cmd represents the exp command
+var Cmd = &cobra.Command{
 	Use:   "exp",
 	Short: "temporary demo",
 	Long: `A longer description that spans multiple lines and likely contains examples

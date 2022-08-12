@@ -3,6 +3,8 @@ package cmd
 import (
 	"fmt"
 	"github.com/lwabish/go-snippets/cmd/exp"
+	"github.com/lwabish/go-snippets/cmd/image"
+	"github.com/lwabish/go-snippets/cmd/k8s"
 	"github.com/spf13/cobra"
 	"github.com/spf13/cobra/doc"
 	"os"
@@ -36,7 +38,10 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.AddCommand(exp.ExpCmd)
+	rootCmd.AddCommand(exp.Cmd)
+	rootCmd.AddCommand(image.Cmd)
+	rootCmd.AddCommand(k8s.Cmd)
+
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.

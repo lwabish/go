@@ -1,6 +1,3 @@
-/*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
-*/
 package exp
 
 import (
@@ -25,7 +22,7 @@ to quickly create a Cobra application.`,
 }
 
 func init() {
-	ExpCmd.AddCommand(hugepageCmd)
+	Cmd.AddCommand(hugepageCmd)
 
 	// Here you will define your flags and configuration settings.
 

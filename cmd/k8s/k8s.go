@@ -1,4 +1,4 @@
-package cmd
+package k8s
 
 import (
 	"github.com/lwabish/go-snippets/pkg/k8s"
@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 )
 
-// k8sCmd represents the k8s command
-var k8sCmd = &cobra.Command{
+// Cmd represents the k8s command
+var Cmd = &cobra.Command{
 	Use:   "k8s",
 	Short: "tools to manipulate kubernetes objects",
 	Long: `author: lwabish 
@@ -18,17 +18,16 @@ contact: imwubowen@gmail.com`,
 }
 
 func init() {
-	rootCmd.AddCommand(k8sCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
 	if home := homedir.HomeDir(); home != "" {
-		k8s.KubeConfig = k8sCmd.PersistentFlags().String("kubeconfig", filepath.Join(home, ".kube", "config"),
+		k8s.KubeConfig = Cmd.PersistentFlags().String("kubeconfig", filepath.Join(home, ".kube", "config"),
 			"(optional) absolute path to the kubeConfig file")
 	} else {
-		k8s.KubeConfig = k8sCmd.PersistentFlags().String("kubeconfig", "",
+		k8s.KubeConfig = Cmd.PersistentFlags().String("kubeconfig", "",
 			"absolute path to the kubeConfig file")
 	}
 

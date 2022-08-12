@@ -1,4 +1,4 @@
-package cmd
+package image
 
 import (
 	"github.com/lwabish/go-snippets/pkg/image"
@@ -20,7 +20,7 @@ contact: imwubowen@gmail.com`,
 var imageFilters []string
 
 func init() {
-	imageCmd.AddCommand(metaCmd)
+	Cmd.AddCommand(metaCmd)
 
 	// Here you will define your flags and configuration settings.
 

@@ -1,4 +1,4 @@
-package cmd
+package k8s
 
 import (
 	"github.com/lwabish/go-snippets/pkg/k8s"
@@ -21,7 +21,7 @@ var labelFilters []string
 var erase bool
 
 func init() {
-	k8sCmd.AddCommand(nlcCmd)
+	Cmd.AddCommand(nlcCmd)
 
 	// Here you will define your flags and configuration settings.
 
