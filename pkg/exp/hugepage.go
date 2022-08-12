@@ -55,5 +55,11 @@ func Run(s bool) {
 	defer mapper.munmap()
 	fmt.Printf("Returned address is %p\n", mapper.addr)
 
+	fmt.Printf("Writing data into hugepage memory")
 	mapper.writeData("lwabish go huge page test")
+
+	if s {
+		fmt.Printf("Writing done, sleep forever...")
+		select {}
+	}
 }

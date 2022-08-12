@@ -11,9 +11,11 @@ var hugepageCmd = &cobra.Command{
 	Short: "go demo to use linux hugepage",
 	Long:  `inspired by kernel demo of hugepage`,
 	Run: func(cmd *cobra.Command, args []string) {
-		exp.Run(false)
+		exp.Run(sleep)
 	},
 }
+
+var sleep bool
 
 func init() {
 	Cmd.AddCommand(hugepageCmd)
@@ -27,4 +29,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// hugepageCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	hugepageCmd.Flags().BoolVarP(&sleep, "sleep", "s", false, "sleep after huge page test")
 }
