@@ -1,16 +1,7 @@
 # Command Line Tool Collection: lwabish
 
 ## Usage
-```bash
-# image
-lwabish image -h
-
-# k8s
-lwabish k8s -h
-
-# all commands
-lwabish -h
-```
+![doc](docs/lwabish.md)
 
 ## install
 ```bash
