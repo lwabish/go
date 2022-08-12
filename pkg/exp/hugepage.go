@@ -46,7 +46,9 @@ func Run(s bool) {
 	e = os.Remove(hugePageFile)
 	f, e := os.OpenFile(hugePageFile, os.O_CREATE|os.O_RDWR, 0644)
 	common.Pe(e == nil, "open file error: ", e)
-	defer common.Pe(f.Close() == nil, "close file error: ")
+	defer func(f *os.File) {
+		common.Pe(f.Close() == nil, "close file error: ")
+	}(f)
 
 	mapper := Mapper{file: f}
 	mapper.mmap()

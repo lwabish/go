@@ -1,3 +1,4 @@
+SHIP_TARGET="root@infra2.t:/root/wbw/lwabish"
 
 default: install-mac gen-doc
 
@@ -15,3 +16,6 @@ install-linux: build-linux
 
 gen-doc:
 	@go run main.go -g
+
+ship: build-linux
+	@scp bin/lwabish-linux-amd64 $(SHIP_TARGET)

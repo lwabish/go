@@ -11,7 +11,7 @@ var hugepageCmd = &cobra.Command{
 	Short: "go demo to use linux hugepage",
 	Long:  `inspired by kernel demo of hugepage`,
 	Run: func(cmd *cobra.Command, args []string) {
-		exp.Run()
+		exp.Run(false)
 	},
 }
 
