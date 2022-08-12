@@ -1,5 +1,57 @@
 package exp
 
-func Run() {
+import (
+	"fmt"
+	"github.com/lwabish/go-snippets/pkg/common"
+	"os"
+	"syscall"
+	"unsafe"
+)
 
+const (
+	hugePageFile       = "/hugepages/test-go"
+	defaultMaxFileSize = 1 << 30
+	defaultMemMapSize  = 128 * (1 << 20)
+)
+
+type Mapper struct {
+	file *os.File
+	data *[defaultMaxFileSize]byte
+	addr []byte
+}
+
+func (m *Mapper) mmap() {
+	// os.File.Fd 在osx不存在，需要在idea里把目标平台改为linux
+	b, err := syscall.Mmap(int(m.file.Fd()), 0, defaultMemMapSize, syscall.PROT_WRITE|syscall.PROT_READ, syscall.MAP_SHARED)
+	common.Pe(err == nil, "failed to mmap", err)
+	m.addr = b
+	m.data = (*[defaultMaxFileSize]byte)(unsafe.Pointer(&b[0]))
+}
+
+func (m *Mapper) munmap() {
+	common.Pe(syscall.Munmap(m.addr) == nil, "failed to munmap")
+	m.data = nil
+	m.addr = nil
+}
+
+func (m *Mapper) writeData(d string) {
+	for i, v := range d {
+		m.data[i] = byte(v)
+	}
+}
+
+// Run open a file in huge page mount point, mmap it into memory, write data into it.
+func Run(s bool) {
+	var e error
+	e = os.Remove(hugePageFile)
+	f, e := os.OpenFile(hugePageFile, os.O_CREATE|os.O_RDWR, 0644)
+	common.Pe(e == nil, "open file error: ", e)
+	defer common.Pe(f.Close() == nil, "close file error: ")
+
+	mapper := Mapper{file: f}
+	mapper.mmap()
+	defer mapper.munmap()
+	fmt.Printf("Returned address is %p\n", mapper.addr)
+
+	mapper.writeData("lwabish go huge page test")
 }
