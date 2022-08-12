@@ -1,7 +1,7 @@
 # Command Line Tool Collection: lwabish
 
 ## Usage
-![doc](docs/lwabish.md)
+[doc](docs/lwabish.md)
 
 ## install
 ```bash
