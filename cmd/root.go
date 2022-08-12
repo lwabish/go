@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/lwabish/go-snippets/cmd/exp"
 	"github.com/spf13/cobra"
 	"os"
 )
@@ -29,6 +30,7 @@ func Execute() {
 }
 
 func init() {
+	rootCmd.AddCommand(exp.ExpCmd)
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
