@@ -23,7 +23,9 @@ contact: imwubowen@gmail.com`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("add -h to see help message")
+		if !genDoc {
+			fmt.Println("add -h to see help message")
+		}
 	},
 }
 
@@ -56,8 +58,9 @@ func init() {
 
 func generateDoc() {
 	if genDoc {
-		fmt.Printf("generating doc tree")
+		fmt.Println("Updating doc tree...")
 		_ = doc.GenMarkdownTree(rootCmd, "./docs/")
+		fmt.Printf("Done...\n")
 		os.Exit(0)
 	}
 }

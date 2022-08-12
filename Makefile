@@ -1,5 +1,5 @@
 
-default: install-mac
+default: install-mac gen-doc
 
 build-linux:
 	@CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/lwabish-linux-amd64
@@ -12,3 +12,6 @@ install-mac: build-mac
 
 install-linux: build-linux
 	@mv -f bin/lwabish-linux-amd64 ${GOPATH}/bin/lwabish
+
+gen-doc:
+	@go run main.go -g
