@@ -1,0 +1,35 @@
+{{- if .Values.hugepage }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "hugepage-test"
+spec:
+  selector:
+    matchLabels:
+      app: "hugepage-test"
+  template:
+    metadata:
+      labels:
+        app: "hugepage-test"
+    spec:
+      volumes:
+        - name: hugepage
+          emptyDir:
+            medium: HugePages
+      containers:
+        - name: "hugepage-test"
+          image: "{{ .Values.image }}"
+          imagePullPolicy: Always
+          args:
+            - "exp"
+            - "hugepage"
+            - "-s"
+          volumeMounts:
+            - mountPath: /hugepages/
+              name: hugepage
+          resources:
+            limits:
+              cpu: "2"
+              memory: 1Gi
+              hugepages-2Mi: 512Mi
+{{- end }}
