@@ -1,4 +1,6 @@
 SHIP_TARGET="root@infra2.t:/root/wbw/lwabish"
+REGISTRY="ccr.ccs.tencentyun.com/lwabish/lwabish"
+IMAGE=$(REGISTRY):latest
 
 default: install-mac gen-doc
 
@@ -19,3 +21,11 @@ gen-doc:
 
 ship: build-linux
 	@scp bin/lwabish-linux-amd64 $(SHIP_TARGET)
+
+image: build-linux
+	@docker build -t $(IMAGE) .
+	@docker push $(IMAGE)
+	@docker rmi $(IMAGE)
+
+install-kube: image
+	helm upgrade -i -n default lwabish ./chart --set image=$(IMAGE)
