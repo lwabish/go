@@ -13,6 +13,9 @@ var Cmd = &cobra.Command{
 	Short: "tools to manipulate kubernetes objects",
 	Long: `author: lwabish 
 contact: imwubowen@gmail.com`,
+	PersistentPreRun: func(cmd *cobra.Command, args []string) {
+		k8s.InitClient()
+	},
 }
 
 func init() {
@@ -32,5 +35,4 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// k8sCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
-	k8s.InitClient()
 }

@@ -9,6 +9,7 @@ var KubeConfig *string
 var client *kubernetes.Clientset
 
 func InitClient() {
+	// todo:support in cluster sa
 	// use the current context in kubeConfig
 	config, err := clientcmd.BuildConfigFromFlags("", *KubeConfig)
 	if err != nil {
