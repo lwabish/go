@@ -1,6 +1,6 @@
 SHIP_TARGET="root@infra2.t:/root/wbw/lwabish"
 REGISTRY="ccr.ccs.tencentyun.com/lwabish/lwabish"
-IMAGE="$(REGISTRY):latest"
+IMAGE=$(REGISTRY):latest
 KUBE_CONTEXT="infra"
 KUBE_NS="wbw"
 
