@@ -1,8 +1,8 @@
 package exp
 
 import (
-	"fmt"
 	"github.com/lwabish/go-snippets/pkg/common"
+	"log"
 	"os"
 	"syscall"
 	"unsafe"
@@ -53,13 +53,13 @@ func Run(s bool) {
 	mapper := Mapper{file: f}
 	mapper.mmap()
 	defer mapper.munmap()
-	fmt.Printf("Returned address is %p\n", mapper.addr)
+	log.Printf("Returned address is %p\n", mapper.addr)
 
-	fmt.Printf("Writing data into hugepage memory")
+	log.Printf("Writing data into hugepage memory")
 	mapper.writeData("lwabish go huge page test")
 
 	if s {
-		fmt.Printf("Writing done, sleep forever...")
+		log.Printf("Writing done, sleep forever...")
 		select {}
 	}
 }
