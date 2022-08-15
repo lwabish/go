@@ -9,6 +9,8 @@ spec:
       app: "hugepage-test"
   template:
     metadata:
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
       labels:
         app: "hugepage-test"
     spec:
