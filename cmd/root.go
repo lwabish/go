@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-var version = "v1.0.3"
+var version = "v1.0.4"
 var genDoc = false
 
 // rootCmd represents the base command when called without any subcommands
