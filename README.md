@@ -1,15 +1,25 @@
-# Command Line Tool Collection: lwabish
+[TOC]
 
-## Usage
-[doc](docs/lwabish.md)
+# Go
 
-## install
+## Packages
+
+## Command line
+
+### Install
+
 ```bash
-go install github.com/lwabish/go-snippets@latest
+go install github.com/lwabish/go@latest
 ```
 
-## dev
-### cobra命令创建
+### Usage
+
+[doc](docs/lwabish.md)
+
+## Dev
+
+### Extend
+
 ```bash
 # 增加command
 cobra-cli add image
@@ -21,7 +31,8 @@ cobra-cli add meta -p 'imageCmd'
 # 参考各个command的init函数
 ```
 
-### 项目初始化
+### Init
+
 ```bash
 go install github.com/spf13/cobra-cli@latest
 
