@@ -1,7 +1,7 @@
 package exp
 
 import (
-	"github.com/lwabish/go/pkg/common"
+	"github.com/lwabish/go/pkg/util"
 	"log"
 	"os"
 	"syscall"
@@ -23,13 +23,13 @@ type Mapper struct {
 func (m *Mapper) mmap() {
 	// os.File.Fd 在osx不存在，需要在idea里把目标平台改为linux
 	b, err := syscall.Mmap(int(m.file.Fd()), 0, defaultMemMapSize, syscall.PROT_WRITE|syscall.PROT_READ, syscall.MAP_SHARED)
-	common.Pe(err == nil, "failed to mmap", err)
+	util.Pe(err == nil, "failed to mmap", err)
 	m.addr = b
 	m.data = (*[defaultMaxFileSize]byte)(unsafe.Pointer(&b[0]))
 }
 
 func (m *Mapper) munmap() {
-	common.Pe(syscall.Munmap(m.addr) == nil, "failed to munmap")
+	util.Pe(syscall.Munmap(m.addr) == nil, "failed to munmap")
 	m.data = nil
 	m.addr = nil
 }
@@ -45,9 +45,9 @@ func Run(s bool) {
 	var e error
 	e = os.Remove(hugePageFile)
 	f, e := os.OpenFile(hugePageFile, os.O_CREATE|os.O_RDWR, 0644)
-	common.Pe(e == nil, "open file error: ", e)
+	util.Pe(e == nil, "open file error: ", e)
 	defer func(f *os.File) {
-		common.Pe(f.Close() == nil, "close file error: ")
+		util.Pe(f.Close() == nil, "close file error: ")
 	}(f)
 
 	mapper := Mapper{file: f}
