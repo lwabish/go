@@ -1,7 +1,7 @@
 package exp
 
 import (
-	"github.com/lwabish/go-snippets/pkg/common"
+	"github.com/lwabish/go/pkg/common"
 	"log"
 	"os"
 	"syscall"

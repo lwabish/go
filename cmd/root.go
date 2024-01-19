@@ -2,9 +2,9 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/lwabish/go-snippets/cmd/exp"
-	"github.com/lwabish/go-snippets/cmd/image"
-	"github.com/lwabish/go-snippets/cmd/k8s"
+	"github.com/lwabish/go/cmd/exp"
+	"github.com/lwabish/go/cmd/image"
+	"github.com/lwabish/go/cmd/k8s"
 	"github.com/spf13/cobra"
 	"github.com/spf13/cobra/doc"
 	"os"

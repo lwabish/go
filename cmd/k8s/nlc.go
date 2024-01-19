@@ -1,7 +1,7 @@
 package k8s
 
 import (
-	"github.com/lwabish/go-snippets/pkg/k8s"
+	"github.com/lwabish/go/pkg/k8s"
 
 	"github.com/spf13/cobra"
 )

@@ -1,7 +1,7 @@
 package exp
 
 import (
-	"github.com/lwabish/go-snippets/pkg/exp"
+	"github.com/lwabish/go/pkg/exp"
 	"github.com/spf13/cobra"
 )
 

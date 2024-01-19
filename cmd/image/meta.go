@@ -1,7 +1,7 @@
 package image
 
 import (
-	"github.com/lwabish/go-snippets/pkg/image"
+	"github.com/lwabish/go/pkg/image"
 
 	"github.com/spf13/cobra"
 )

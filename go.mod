@@ -1,4 +1,4 @@
-module github.com/lwabish/go-snippets
+module github.com/lwabish/go
 
 go 1.18
 
