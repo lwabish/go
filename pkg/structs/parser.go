@@ -1,4 +1,4 @@
-package _struct
+package structs
 
 import (
 	"fmt"
@@ -40,8 +40,8 @@ func IsValidCPUCores(interfaces []interface{}) ([]int, error) {
 func ParseInts(v interface{}) ([]int, error) {
 	var result []int
 	switch val := v.(type) {
+	// encoding/json treat ints as float64,so there is no int case
 	case string:
-		fmt.Printf("string  %v\n", val)
 		ret, err := StringToInts(val)
 		if err != nil {
 			return nil, err
@@ -53,7 +53,7 @@ func ParseInts(v interface{}) ([]int, error) {
 		}
 		result = append(result, int(val))
 	default:
-		return nil, fmt.Errorf("%v invalid", val)
+		return nil, fmt.Errorf("unexpected type %v", val)
 	}
 	return result, nil
 }
