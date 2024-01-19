@@ -32,3 +32,6 @@ image: build-linux
 install-kube: image
 	kubectl config use-context $(KUBE_CONTEXT)
 	helm upgrade -i -n $(KUBE_NS) lwabish ./chart --set image=$(IMAGE)
+
+lint:
+	goimports-reviser -format -rm-unused ./...
