@@ -1,10 +1,12 @@
 package k8s
 
 import (
-	"github.com/lwabish/go/pkg/k8s"
+	"path/filepath"
+
 	"github.com/spf13/cobra"
 	"k8s.io/client-go/util/homedir"
-	"path/filepath"
+
+	"github.com/lwabish/go/pkg/k8s"
 )
 
 // Cmd represents the k8s command

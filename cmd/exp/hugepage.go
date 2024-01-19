@@ -1,8 +1,9 @@
 package exp
 
 import (
-	"github.com/lwabish/go/pkg/exp"
 	"github.com/spf13/cobra"
+
+	"github.com/lwabish/go/pkg/exp"
 )
 
 // hugepageCmd represents the hugepage command

@@ -1,9 +1,9 @@
 package image
 
 import (
-	"github.com/lwabish/go/pkg/image"
-
 	"github.com/spf13/cobra"
+
+	"github.com/lwabish/go/pkg/image"
 )
 
 // metaCmd represents the meta command

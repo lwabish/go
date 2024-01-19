@@ -1,11 +1,12 @@
 package exp
 
 import (
-	"github.com/lwabish/go/pkg/util"
 	"log"
 	"os"
 	"syscall"
 	"unsafe"
+
+	"github.com/lwabish/go/pkg/util"
 )
 
 const (

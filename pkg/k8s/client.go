@@ -6,6 +6,7 @@ import (
 )
 
 var KubeConfig *string
+
 var client *kubernetes.Clientset
 
 func InitClient() {

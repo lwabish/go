@@ -2,15 +2,18 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+
+	"github.com/spf13/cobra"
+	"github.com/spf13/cobra/doc"
+
 	"github.com/lwabish/go/cmd/exp"
 	"github.com/lwabish/go/cmd/image"
 	"github.com/lwabish/go/cmd/k8s"
-	"github.com/spf13/cobra"
-	"github.com/spf13/cobra/doc"
-	"os"
 )
 
 var version = "v1.0.4"
+
 var genDoc = false
 
 // rootCmd represents the base command when called without any subcommands

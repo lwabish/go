@@ -1,9 +1,9 @@
 package k8s
 
 import (
-	"github.com/lwabish/go/pkg/k8s"
-
 	"github.com/spf13/cobra"
+
+	"github.com/lwabish/go/pkg/k8s"
 )
 
 // nlcCmd represents the nlc command
@@ -18,6 +18,7 @@ contact: imwubowen@gmail.com`,
 }
 
 var labelFilters []string
+
 var erase bool
 
 func init() {

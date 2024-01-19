@@ -1,4 +1,4 @@
-package algorithm
+package structs
 
 import (
 	"fmt"
