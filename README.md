@@ -34,7 +34,7 @@ cobra-cli add meta -p 'imageCmd'
 ```bash
 go install github.com/spf13/cobra-cli@latest
 
-go mod init github.com/lwabish/snippets
+go mod init github.com/lwabish/go
 
 cobra-cli init
 ```
