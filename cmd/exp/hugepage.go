@@ -12,11 +12,14 @@ var hugepageCmd = &cobra.Command{
 	Short: "go demo to use linux hugepage",
 	Long:  `inspired by kernel demo of hugepage`,
 	Run: func(cmd *cobra.Command, args []string) {
-		exp.Run(sleep)
+		exp.Run(sleep, size)
 	},
 }
 
-var sleep bool
+var (
+	sleep bool
+	size  int
+)
 
 func init() {
 	Cmd.AddCommand(hugepageCmd)
@@ -31,4 +34,5 @@ func init() {
 	// is called directly, e.g.:
 	// hugepageCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 	hugepageCmd.Flags().BoolVarP(&sleep, "sleep", "s", false, "sleep after huge page test")
+	hugepageCmd.Flags().IntVarP(&size, "size", "z", 1, "huge page size(MB)")
 }
