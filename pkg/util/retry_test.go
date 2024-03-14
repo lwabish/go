@@ -8,7 +8,7 @@ var (
 
 func TestRetry(t *testing.T) {
 	for retry := Start(DefaultRetryOptions); retry.Next(); {
-		if !succeedAt3rdRetry() {
+		if !succeedAt(3) {
 			t.Logf("failed for the %d time", retryCounter)
 			continue
 		} else {
@@ -18,10 +18,10 @@ func TestRetry(t *testing.T) {
 	}
 }
 
-func succeedAt3rdRetry() bool {
-	if retryCounter == 3 {
+func succeedAt(c int) bool {
+	retryCounter++
+	if retryCounter == c {
 		return true
 	}
-	retryCounter++
 	return false
 }
