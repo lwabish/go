@@ -26,8 +26,10 @@ spec:
             - "exp"
             - "hugepage"
             - "-s"
+            - "-z"
+            - "2"
           volumeMounts:
-            - mountPath: /hugepages/
+            - mountPath: /dev/hugepages/
               name: hugepage
           resources:
             limits:
