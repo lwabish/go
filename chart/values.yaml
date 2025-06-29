@@ -1,1 +1,13 @@
-hugepage: true
+image:
+  repo: ccr.ccs.tencentyun.com/lwabish/lwabish
+  tag: latest
+  pullPolicy: Always
+args:
+  - "server"
+  - "home"
+
+deployment:
+  enabled: true
+job:
+  enabled: false
+hugePage: false

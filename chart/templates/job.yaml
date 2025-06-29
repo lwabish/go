@@ -1,0 +1,19 @@
+{{- if .Values.job }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: title
+spec:
+  template:
+    spec:
+      containers:
+          - name: title
+            #todo
+            image: busybox:latest
+            imagePullPolicy: IfNotPresent
+            command:
+              - /bin/sh
+              - -c
+              - date; echo Hello!
+      restartPolicy: OnFailure
+{{- end }}

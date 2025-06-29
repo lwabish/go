@@ -1,39 +1,22 @@
-{{- if .Values.hugepage }}
+{{- if .Values.deployment }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "hugepage-test"
+  name: {{ .Release.Name }}
 spec:
   selector:
     matchLabels:
-      app: "hugepage-test"
+      app: {{ .Release.Name }}
   template:
     metadata:
       annotations:
         rollme: {{ randAlphaNum 5 | quote }}
       labels:
-        app: "hugepage-test"
+        app: {{ .Release.Name }}
     spec:
-      volumes:
-        - name: hugepage
-          emptyDir:
-            medium: HugePages
       containers:
-        - name: "hugepage-test"
-          image: "{{ .Values.image }}"
-          imagePullPolicy: Always
-          args:
-            - "exp"
-            - "hugepage"
-            - "-s"
-            - "-z"
-            - "2"
-          volumeMounts:
-            - mountPath: /dev/hugepages/
-              name: hugepage
-          resources:
-            limits:
-              cpu: "2"
-              memory: 1Gi
-              hugepages-2Mi: 512Mi
+        - name: default
+          image: "{{ .Values.image.repo }}:{{ .Values.image.tag}}"
+          imagePullPolicy: {{ .Values.image.pullPolicy}}
+          args: {{ .Values.args | toYaml | nindent 12 }}
 {{- end }}
