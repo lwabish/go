@@ -10,6 +10,7 @@ import (
 	"github.com/lwabish/go/cmd/exp"
 	"github.com/lwabish/go/cmd/image"
 	"github.com/lwabish/go/cmd/k8s"
+	"github.com/lwabish/go/cmd/server"
 )
 
 var version = "v1.0.4"
@@ -46,6 +47,7 @@ func init() {
 	rootCmd.AddCommand(exp.Cmd)
 	rootCmd.AddCommand(image.Cmd)
 	rootCmd.AddCommand(k8s.Cmd)
+	rootCmd.AddCommand(server.Cmd)
 
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
