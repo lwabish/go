@@ -2,6 +2,7 @@ package server
 
 import (
 	"crypto/tls"
+	"github.com/samber/lo"
 	"log"
 	"net/http"
 
@@ -29,7 +30,7 @@ var homeCmd = &cobra.Command{
 
 		r := gin.Default()
 		r.Group("api/v1")
-		r.POST("/pc", pc)
+		r.Any("/node", pc(pveClient))
 		r.Any("/vm", vm(pveClient))
 		if err := r.Run(":8080"); err != nil {
 			log.Fatal(err)
@@ -37,8 +38,40 @@ var homeCmd = &cobra.Command{
 	},
 }
 
-func pc(c *gin.Context) {
-	//TODO: https://github.com/sabhiram/go-wol
+func pc(pc *proxmox.Client) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		switch c.Request.Method {
+		case http.MethodGet:
+			nodes, err := pc.GetNodeList(c)
+			if err != nil {
+				c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+				return
+			}
+			c.JSON(200, nodes)
+		case http.MethodPost:
+			param := struct {
+				Name string `json:"name"`
+				Op   string `json:"op"`
+			}{}
+			if err := c.ShouldBindBodyWithJSON(&param); err != nil {
+				c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+				return
+			}
+			if param.Op == "start" {
+				//TODO: https://github.com/sabhiram/go-wol
+			} else if param.Op == "shutdown" {
+				s, err := pc.ShutdownNode(c, param.Name)
+				if err != nil {
+					c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+					return
+				}
+				c.JSON(200, lo.Ternary(s == "", "OK", s))
+				return
+			}
+		default:
+			c.AbortWithStatusJSON(http.StatusMethodNotAllowed, gin.H{"error": "method not allowed"})
+		}
+	}
 }
 
 func vm(pc *proxmox.Client) gin.HandlerFunc {
