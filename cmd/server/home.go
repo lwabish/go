@@ -14,13 +14,14 @@ var (
 	pveApiUrl   = ""
 	pveUser     = ""
 	pvePassword = ""
+	pveTimeout  = 300
 )
 
 var homeCmd = &cobra.Command{
 	Use: "home",
 	Run: func(cmd *cobra.Command, args []string) {
 
-		pveClient, err := proxmox.NewClient(pveApiUrl, nil, "", &tls.Config{InsecureSkipVerify: true}, "", 200000)
+		pveClient, err := proxmox.NewClient(pveApiUrl, nil, "", &tls.Config{InsecureSkipVerify: true}, "", pveTimeout)
 		if err != nil {
 			log.Fatalln(err)
 		}
@@ -93,4 +94,5 @@ func init() {
 	homeCmd.Flags().StringVar(&pveApiUrl, "pve-api-url", pveApiUrl, "api url")
 	homeCmd.Flags().StringVar(&pveUser, "pve-user", pveUser, "username")
 	homeCmd.Flags().StringVar(&pvePassword, "pve-password", pvePassword, "password")
+	homeCmd.Flags().IntVar(&pveTimeout, "pve-timeout", pveTimeout, "timeout in seconds")
 }
