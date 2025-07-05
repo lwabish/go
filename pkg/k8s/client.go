@@ -23,3 +23,7 @@ func InitClient() {
 		panic(err.Error())
 	}
 }
+
+func GetClient() *kubernetes.Clientset {
+	return client
+}

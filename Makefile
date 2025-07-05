@@ -25,7 +25,7 @@ ship: build-linux
 	@scp bin/lwabish-linux-amd64 $(SHIP_TARGET)
 
 image: build-linux
-	@docker build -t $(IMAGE) .
+	@docker buildx build --platform linux/amd64 -t $(IMAGE) .
 	@docker push $(IMAGE)
 	@docker rmi $(IMAGE)
 

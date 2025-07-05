@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wol
+spec:
+  template:
+    spec:
+      containers:
+        - name: wol
+          image: lwabish/go-wol
+          args:
+            - wake
+            - 18:C0:4D:00:09:FF
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Never
+      hostNetwork: true
