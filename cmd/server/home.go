@@ -27,8 +27,9 @@ var (
 )
 
 const (
-	responseOK   = "OK"
-	jobNamespace = "default"
+	responseOK      = "OK"
+	wolJobNamespace = "default"
+	wolJobImage     = "lwabish/go-wol"
 )
 
 var homeCmd = &cobra.Command{
@@ -75,7 +76,7 @@ func node(pc *proxmox.Client, kc *kubernetes.Clientset) gin.HandlerFunc {
 			}
 			if param.Op == "start" {
 				macAddr := param.Mac
-				j, err := kc.BatchV1().Jobs(jobNamespace).Create(c, &batchV1.Job{
+				j, err := kc.BatchV1().Jobs(wolJobNamespace).Create(c, &batchV1.Job{
 					ObjectMeta: metav1.ObjectMeta{
 						GenerateName: "home-api-send-wol-",
 					},
@@ -86,7 +87,7 @@ func node(pc *proxmox.Client, kc *kubernetes.Clientset) gin.HandlerFunc {
 								Containers: []coreV1.Container{
 									{
 										Name:  "home-api-send-wol",
-										Image: "lwabish/go-wol",
+										Image: wolJobImage,
 										Args: []string{
 											"wake", macAddr,
 										},
@@ -104,7 +105,7 @@ func node(pc *proxmox.Client, kc *kubernetes.Clientset) gin.HandlerFunc {
 				}
 				if err = wait.PollUntilContextTimeout(c, 500*time.Millisecond, 30*time.Second, false,
 					func(ctx context.Context) (done bool, err error) {
-						job, err := kc.BatchV1().Jobs(jobNamespace).Get(ctx, j.GetName(), metav1.GetOptions{})
+						job, err := kc.BatchV1().Jobs(wolJobNamespace).Get(ctx, j.GetName(), metav1.GetOptions{})
 						if err != nil {
 							log.Printf("Get job %s failed: %v", j.GetName(), err)
 							return false, nil
